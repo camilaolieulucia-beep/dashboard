@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Solar Energy Tech - Business Intelligence</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; }
+.chart-container { position: relative; height: 280px; width: 100%; }
+</style>
+</head>
+<body class="p-4 md:p-8">
+
+<header class="mb-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div>
+<h1 class="text-2xl font-bold text-slate-800 flex items-center gap-2">
+<i data-lucide="sun" class="text-orange-500"></i> Solar Energy Tech
+</h1>
+<p class="text-slate-500 text-sm">Dashboard de Performance e Eficiência Energética</p>
+</div>
+<div class="flex gap-2">
+<div class="bg-white border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-medium shadow-sm">
+<i data-lucide="calendar" size="14" class="text-slate-400"></i>
+Últimos 12 Meses
+</div>
+<div class="bg-white border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-2 text-xs font-medium shadow-sm">
+<i data-lucide="map" size="14" class="text-slate-400"></i>
+Estado de São Paulo
+</div>
+</div>
+</header>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+<div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="p-2 bg-orange-50 rounded-lg text-orange-600"><i data-lucide="shopping-bag" size="20"></i></div>
+<span class="text-[10px] font-bold text-slate-400">Total Período</span>
+</div>
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Painéis Vendidos</p>
+<h3 class="text-2xl font-bold">1.284 <span class="text-xs font-normal text-slate-400">unid.</span></h3>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="p-2 bg-emerald-50 rounded-lg text-emerald-600"><i data-lucide="trending-down" size="20"></i></div>
+<span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded">-R$ 420k</span>
+</div>
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Economia nos Clientes</p>
+<h3 class="text-2xl font-bold">35% <span class="text-xs font-normal text-slate-400">médio</span></h3>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="p-2 bg-blue-50 rounded-lg text-blue-600"><i data-lucide="cloud-rain" size="20"></i></div>
+<span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">Sazonal</span>
+</div>
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Índice de Chuvas</p>
+<h3 class="text-2xl font-bold">350 <span class="text-xs font-normal text-slate-400">mm</span></h3>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+<div class="flex justify-between items-center mb-4">
+<div class="p-2 bg-slate-100 rounded-lg text-slate-600"><i data-lucide="users" size="20"></i></div>
+</div>
+<p class="text-slate-400 text-[10px] uppercase font-bold tracking-widest">Carteira Ativa</p>
+<h3 class="text-2xl font-bold">452 <span class="text-xs font-normal text-slate-400">contas</span></h3>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<h4 class="font-bold text-slate-700 mb-6 flex items-center gap-2">
+<i data-lucide="bar-chart-3" size="18"></i> Correlação Vendas x Clima
+</h4>
+<div class="chart-container">
+<canvas id="trendChart"></canvas>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+<h4 class="font-bold text-slate-700 mb-6 flex items-center gap-2">
+<i data-lucide="pie-chart" size="18"></i> Grupos de Clientes por Consumo
+</h4>
+<div class="chart-container">
+<canvas id="clusterChart"></canvas>
+</div>
+</div>
+</div>
+
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+<div class="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+<div class="p-6 border-b border-slate-100 flex justify-between items-center">
+<h4 class="text-sm font-bold text-slate-700 uppercase">Detalhamento Regional</h4>
+<div class="flex gap-2">
+<span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+<span class="w-3 h-3 rounded-full bg-orange-500"></span>
+<span class="w-3 h-3 rounded-full bg-blue-500"></span>
+</div>
+</div>
+<table class="w-full text-left text-sm">
+<thead class="bg-slate-50 text-slate-400 text-[10px] uppercase font-bold tracking-widest">
+<tr>
+<th class="px-6 py-4">Região de SP</th>
+<th class="px-6 py-4 text-center">Volume Vendas</th>
+<th class="px-6 py-4 text-center">Status de Estoque</th>
+<th class="px-6 py-4">Prioridade</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-100">
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-semibold">Campinas (Interior)</td>
+<td class="px-6 py-4 text-center">420 unid.</td>
+<td class="px-6 py-4 text-center"><span class="text-emerald-600 font-bold">Estável</span></td>
+<td class="px-6 py-4"><span class="bg-slate-100 px-2 py-1 rounded text-[10px] font-bold">REPOSIÇÃO NORMAL</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-semibold">Ribeirão Preto</td>
+<td class="px-6 py-4 text-center">315 unid.</td>
+<td class="px-6 py-4 text-center"><span class="text-orange-600 font-bold">Crítico</span></td>
+<td class="px-6 py-4"><span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-[10px] font-bold">URGENTE</span></td>
+</tr>
+<tr class="hover:bg-slate-50 transition-colors">
+<td class="px-6 py-4 font-semibold">São José dos Campos</td>
+<td class="px-6 py-4 text-center">180 unid.</td>
+<td class="px-6 py-4 text-center"><span class="text-blue-600 font-bold">Excesso</span></td>
+<td class="px-6 py-4"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-[10px] font-bold">REMANDAR ESTOQUE</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<aside class="space-y-6">
+<div class="bg-slate-900 text-white p-8 rounded-3xl shadow-xl">
+<h4 class="font-bold text-lg mb-6 flex items-center gap-2 text-orange-400">
+<i data-lucide="lightbulb"></i> Insights do Gestor
+</h4>
+<div class="space-y-6">
+<div class="border-l-4 border-orange-500 pl-4">
+<p class="text-[10px] text-slate-400 font-bold uppercase mb-1 tracking-widest">Consumo vs. Venda</p>
+<p class="text-sm text-slate-200 leading-relaxed">
+No horário das 12h às 15h o consumo de energia dobra. Apesar da queda de vendas nas chuvas, a economia gerada para quem já possui o sistema subiu 10% este ano.
+</p>
+</div>
+<div class="border-l-4 border-emerald-500 pl-4">
+<p class="text-[10px] text-slate-400 font-bold uppercase mb-1 tracking-widest">Retorno Financeiro</p>
+<p class="text-sm text-slate-200 leading-relaxed">
+Clientes do grupo "Residencial Alta Renda" atingiram o Payback (retorno) 6 meses antes do previsto devido ao aumento da tarifa de energia em São Paulo.
+</p>
+</div>
+</div>
+</div>
+
+<div class="bg-white p-6 rounded-2xl border border-slate-100 flex items-center gap-4">
+<div class="p-3 bg-blue-50 text-blue-600 rounded-xl">
+<i data-lucide="info" size="24"></i>
+</div>
+<div>
+<h5 class="font-bold text-slate-800 text-sm">Atualização de Dados</h5>
+<p class="text-[11px] text-slate-400 italic">Sincronizado há 5 minutos via Data Lake.</p>
+</div>
+</div>
+</aside>
+</div>
+
+<script>
+lucide.createIcons();
+
+// 1. Gráfico de Tendência (Vendas x Chuva)
+const ctxTrend = document.getElementById('trendChart').getContext('2d');
+new Chart(ctxTrend, {
+data: {
+labels: ['Out', 'Nov', 'Dez', 'Jan', 'Fev', 'Mar'],
+datasets: [
+{
+type: 'line',
+label: 'Vendas de Placas',
+data: [110, 95, 70, 65, 80, 105],
+borderColor: '#f97316',
+backgroundColor: 'transparent',
+tension: 0.3,
+borderWidth: 3,
+yAxisID: 'y'
+},
+{
+type: 'bar',
+label: 'Chuva (mm)',
+data: [150, 210, 320, 350, 280, 190],
+backgroundColor: 'rgba(59, 130, 246, 0.15)',
+borderRadius: 4,
+yAxisID: 'y1'
+}
+]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+scales: {
+y: { position: 'left', beginAtZero: true },
+y1: { position: 'right', grid: { display: false } }
+},
+plugins: { legend: { position: 'bottom' } }
+}
+});
+
+// 2. Gráfico de Grupos de Clientes (Clustering Estatístico)
+const ctxCluster = document.getElementById('clusterChart').getContext('2d');
+new Chart(ctxCluster, {
+type: 'pie',
+data: {
+labels: ['Residencial (Cluster A)', 'Comercial (Cluster B)', 'Industrial (Cluster C)'],
+datasets: [{
+data: [55, 30, 15],
+backgroundColor: ['#4f46e5', '#10b981', '#f59e0b'],
+borderWidth: 0
+}]
+},
+options: {
+responsive: true,
+maintainAspectRatio: false,
+plugins: { legend: { position: 'bottom' } }
+}
+});
+</script>
+</body>
+</html>
